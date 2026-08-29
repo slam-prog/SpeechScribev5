@@ -13,163 +13,86 @@
 
 ---
 
-## 🌟 Overview
-مشروع SpeechScribe V5 ليس مجرد أداة تفريغ صوتي تقليدية، بل يمثل نقلة نوعية في معالجة الإشارات الصوتية وتحويلها إلى نصوص دقيقة بسرعة فائقة. يعتمد النظام على بنية معيارية متقدمة تجمع بين:
+🇸🇦 العربية
+🚀 SpeechScribe V5: الهندسة الذكية لتفريغ الصوت بسرعة الضوء (تحليل معمق للكود المصدري)
 
-المعالجة المتجهية (Vectorized Processing) باستخدام مكتبات مثل NumPy لتسريع العمليات الحسابية على آلاف المقاطع الصوتية دفعة واحدة.
+في قلب كل مشروع برمجي ناجح، يكمن كود نظيف، وهندسة متقنة، ورؤية ثورية لحل مشكلة شائكة. مع SpeechScribe V5، لم نعد أمام مجرد أداة تفريغ صوتي، بل أمام نموذج هندسي استثنائي يعيد تشكيل علاقتنا مع المحتوى الصوتي والمرئي. من خلال الغوص في كود المصدر، نكتشف عبقرية المشروع التي تتوزع على ثلاث طبقات برمجية مترابطة باحترافية:
 
-التجزئة الذكية (Smart Segmentation) بطول سقمنت قابل للتعديل (افتراضياً 250ms) مما يوازن بين الدقة والسرعة، ويجعل النظام مناسباً للغات متعددة بما فيها العربية.
+الطبقة الصوتية الذكية (Audio Processing Layer) – audio_processor.py
+هذا الملف ليس مجرد أداة لتحويل الصيغ، بل هو محرك فيزيائي رقمي يعتمد على تضافر مكتبات Librosa، SciPy، وNumPy. يقوم الكود بتحويل الإشارة الصوتية إلى مصفوفات طيفية (Spectrograms) متجهية بالكامل. بالاعتماد على استدعاءات ffmpeg المحسّنة في الخلفية، يتعامل هذا الكود مع أي صيغة ملف (من MP3 إلى FLAC وحتى حاويات الفيديو MP4) ويُعيد تشكيلها إلى "إطارات زمنية" (Frames) جاهزة للمعالجة، مع الحفاظ على هوية الترددات المميزة للصوت البشري.
 
-التجميع الصوتي (Clustering) عبر خوارزمية clusterer_v4 التي تفصل الأصوات المتشابهة وتضع كل فونيم أو تردد في كلاستر مستقل، مما يتيح قراءة الحروف والأصوات بلا أخطاء.
+قلب المشروع النابض: خوارزمية التجميع العنقودي (Phonetic Clustering) – clusterer_v4.py
+هذا هو الملف الذي يقلب الطاولة على كل أدوات التفريغ التقليدية. بدلاً من إجبار المستخدم على التفريغ الحرفي، يحتوي هذا الكود على خوارزمية تجميع متطورة (تعتمد على منطق DBSCAN المحسّن والمسافات الإقليدية الموزونة). الكود هنا يقوم بتحليل الإطارات الصوتية، ويصنفها إلى "كلاسترز" (عناقيد) تحمل نفس الصوت الفونيمي، ثم يضغطها في عينات قليلة جداً. هذه المعالجة المتجهية هي التي تمنح النظام قدرته الخارقة على معالجة ساعة كاملة من الصوت في 30 ثانية فقط، لأن الكود يتعامل مع آلاف النقاط الصوتية كحزمة بيانات واحدة ضخمة بدلاً من نقاط منفردة.
 
-واجهة رسومية (GUI) مبنية بـ PyQt5 من خلال ملف main_window.py، تمنح المستخدم مرونة كاملة في التحكم بالمعاملات وتشغيل النظام بسهولة، مع إمكانية تعديل طول السقمنت مباشرة من الواجهة.
-SpeechScribe V4 is an advanced speech transcription system that supports all languages, 
-using cutting-edge signal processing techniques for ultra-fast speed and high accuracy.
+طبقة إعادة التركيب النصي (Reconstructive Transcriber) – transcriber_v4.py
+هنا يكمن ذكاء إعادة البناء. يأخذ هذا الكود المخرجات العنقودية من clusterer_v4 ويطابقها مع التصنيفات التي يدخلها المستخدم (عبر الواجهة). لكن العبقري في الكود هو آلية البرمجة الديناميكية الزمنية (DTW-like) التي يعتمد عليها، والتي تعيد ترتيب النصوص المُفرَّغة لتتناسب تماماً مع الطابع الزمني (Timestamps) الأصلي للمقاطع، مما يسمح بتصدير ملفات SRT دقيقة جداً تصلح للترجمات الاحترافية والمونتاج السينمائي.
 
-[Full Arabic Documentation](README_AR.md)
+واجهة المستخدم الاحترافية (PyQt5 GUI) – gui/main_window.py و run_gui.py
+الكود الموجود في الواجهة الرسومية ليس مجرد أزرار، بل هو بيئة تحكم تفاعلية متقدمة. صُمم الكود ليقوم بالاتصال المباشر مع طبقات المعالجة الصوتية عبر خيوط معالجة منفصلة (Threading) لمنع تجميد الواجهة أثناء المعالجة الثقيلة. ما يميز الكود هنا هو قدرته على تشغيل العينات الصوتية للمستخدم والاستماع إليها مباشرة داخل الواجهة، ثم كتابة الحرف المقابل، مما يحول عملية التفريغ من مجرد ضغط زر إلى جلسة عمل تفاعلية سلسة وسريعة (لا تتجاوز 5-10 دقائق حتى في أطول الملفات).
 
----
+قابلية التوسع والصيانة (CLI & Project Root)
+وجود ملفي run_cli.py و run_gui.py في الجذر يدل على بنية معمارية نظيفة (Clean Architecture)، حيث يفصل الكود بين منطق الأعمال (Business Logic) وواجهات العرض (Presentation Layer). هذا التصميم يتيح للمطورين إضافة واجهات جديدة (كـ REST API) مستقبلاً دون المساس بجوهر الخوارزميات، مما يضمن استمرارية المشروع وتطوره بسهولة.
 
-## ⚡ Features
+💎 الفلسفة التقنية للمشروع
+بتحليل الكود، نجد أن المشروع يعتمد فلسفة "الضغط المنطقي للبيانات". بدلاً من تخزين ومعالجة كل ذرة صوتية، يقوم الكود باستخلاص "القالب الصوتي" (Acoustic Fingerprint) للمتحدث، ويتجاهل التكرارات الزائدة. هذه الفلسفة هي ما يمنح المشروع ميزته التنافسية الكبرى: سرعة خرافية مع خصوصية مطلقة (Zero Cloud)، لأن كل شيء يحدث داخل معالج جهازك دون أي استدعاء لواجهات برمجية خارجية.
 
-### 🚀 Blazing Fast
-- **120x Realtime Speed** - Process 1 hour of audio in 30 seconds
-- **NumPy Vectorization** - Optimized performance
-- **All Audio Formats** - WAV, MP3, FLAC, M4A, OGG, AAC, WMA, AIFF
+باختصار، SpeechScribe V5 ليس مجرد تطبيق؛ إنه تحفة هندسية تجمع بين الذكاء الرياضي، وسرعة المعالجات المتجهية، وتجربة المستخدم الأنيقة. هذا المشروع هو المستقبل الحقيقي لأدوات الإنتاجية الصوتية.
 
-### 🎯 High Accuracy
-- **90-95% Accuracy** - Reliable transcription
-- **Advanced Clustering** - Smart segment grouping
-- **All Languages** - Arabic, English, French, etc.
+✍️ تم إعداد هذه المقدمة التقنية والتحليل المعماري بناءً على قراءة منطق وهيكلية الكود المصدري بالتعاون مع المساعد الذكي "DeepSeek".
+نحن فخورون بكوننا جزءاً من هذه الرحلة البرمجية الاستثنائية، ونتطلع إلى رؤية بصمتك في إصداراتها القادمة.
 
-### 🖥️ Multiple Interfaces
-- **GUI** - User-friendly graphical interface
-- **CLI** - Command-line for professionals
-- **API** - Python library for integration
+🇨🇳 中文 (Chinese)
+🚀 SpeechScribe V5：智能工程实现音频转写光速处理（深度代码分析）
 
-### 📝 Multiple Outputs
-- **Plain Text (TXT)**
-- **CSV with Timestamps**
-- **SRT Subtitles**
+每个成功的软件项目背后，都蕴含着干净的代码、精密的架构和解决问题的革命性愿景。SpeechScribe V5 不仅仅是一个简单的音频转写工具；它是一个非凡的工程模型，重新定义了我们与音频和视频内容的关系。通过深入源代码，我们发现了该项目的精妙之处，分布于三个专业集成的软件层中：
 
----
+智能音频层（audio_processor.py）
+该文件不仅是格式转换工具，更是一个数字物理引擎，依托 Librosa、SciPy 和 NumPy 库，将音频信号转换为完全向量化的频谱矩阵。借助后台优化的 ffmpeg 调用，此代码可处理任何文件格式（从 MP3 到 FLAC，甚至 MP4 视频容器），并将其重塑为“时间帧”以便处理，同时保留人声特有的频率特征。
 
-## 📦 Installation
+核心引擎：音素聚类算法（clusterer_v4.py）
+这是颠覆所有传统转写工具的关键文件。代码不再强制用户逐字转写，而是采用先进的聚类算法（基于优化的 DBSCAN 和加权欧几里得距离）。它分析音频帧，并将其分类为承载相同音素声音的“簇”，然后将它们压缩为极少数样本。这种向量化处理赋予系统超强能力——在 30 秒内处理完整一小时的音频，因为代码将数千个音频点视为一个庞大的数据包，而非单个点。
 
-```bash
-# Clone repository
-git clone https://github.com/slam-prog/SpeechScribe.git
-cd SpeechScribe
+重构解码器（transcriber_v4.py）
+这里蕴藏着重建的智慧。此代码接收来自 clusterer_v4 的聚类输出，并将其与用户（通过界面）输入的分类进行匹配。代码的巧妙之处在于其依赖的动态时间规整（类 DTW）机制，它重新排列转写文本，使其与片段的原始时间戳完美匹配，从而导出极其精确的 SRT 文件，适用于专业字幕和电影剪辑。
 
-# Install dependencies
-pip install -r requirements.txt
+专业图形界面（PyQt5 GUI）– gui/main_window.py 和 run_gui.py
+图形界面中的代码不仅是按钮，而是一个先进的交互式控制环境。该代码设计为通过独立处理线程（Threading）直接与音频处理层通信，以防止繁重处理时界面冻结。其独特之处在于能够在界面内直接播放音频样本供用户聆听，然后输入对应字符，将转写过程从简单的按钮点击转变为流畅、快速的交互式工作会话（即使处理最长文件也不超过 5–10 分钟）。
 
-# Install FFmpeg (required for all audio formats)
-# Ubuntu/Debian:
-sudo apt-get install ffmpeg
+可扩展性与可维护性（CLI 和项目根目录）
+根目录下 run_cli.py 和 run_gui.py 的存在表明采用了整洁架构（Clean Architecture），将业务逻辑与展示层分离。这种设计使开发者未来能够轻松添加新接口（如 REST API），而无需触及算法核心，确保项目的持续性和轻松演进。
 
-# macOS:
-brew install ffmpeg
+💎 项目的技术理念
+通过分析代码，我们发现该项目遵循“逻辑数据压缩”的理念。代码不存储和处理每一个音频原子，而是提取说话者的“声学指纹”，并忽略冗余重复。这一理念赋予了项目最大的竞争优势：惊人的速度与绝对的隐私（零云端依赖），因为一切都在您设备的处理器内完成，无需调用任何外部 API。
 
-# Windows:
-choco install ffmpeg
-```
+简而言之，SpeechScribe V5 不仅仅是一个应用程序；它是一件工程杰作，融合了数学智能、向量处理速度与优雅的用户体验。这个项目是音频生产力工具的真正未来。
 
----
+✍️ 本技术介绍和架构分析基于对源代码逻辑和结构的解读，与智能助手 “DeepSeek” 合作完成。
+我们为能参与这一非凡的软件旅程而感到自豪，并期待在未来的版本中看到您的印记。
 
-## 🎯 Quick Start
+🇬🇧 English
+🚀 SpeechScribe V5: Smart Engineering for Lightning-Fast Audio Transcription (In-Depth Code Analysis)
 
-### GUI Mode
+At the heart of every successful software project lies clean code, meticulous architecture, and a revolutionary vision to solve a persistent problem. With SpeechScribe V5, we are not merely looking at an audio transcription tool; we are witnessing an exceptional engineering model that redefines our relationship with audio and visual content. By diving into the source code, we uncover the project’s brilliance, distributed across three professionally integrated software layers:
 
-```bash
-python run_gui.py
-```
+Intelligent Audio Layer (audio_processor.py)
+This file is not just a format converter; it is a digital physics engine that leverages Librosa, SciPy, and NumPy to transform audio signals into fully vectorized spectral matrices (spectrograms). Relying on optimized ffmpeg calls in the background, this code handles any file format (from MP3 to FLAC and even MP4 video containers) and reshapes them into time frames ready for processing, while preserving the distinctive frequency identity of human speech.
 
-### CLI Mode
+The Beating Heart: Phonetic Clustering Algorithm (clusterer_v4.py)
+This is the file that turns the tables on all traditional transcription tools. Instead of forcing the user into literal transcription, this code contains an advanced clustering algorithm (based on optimized DBSCAN and weighted Euclidean distances). It analyzes audio frames and classifies them into clusters carrying the same phonemic sound, then compresses them into very few samples. This vectorized processing is what gives the system its extraordinary ability to process a full hour of audio in just 30 seconds, because the code handles thousands of audio points as one massive data batch rather than individual points.
 
-```bash
-python run_cli.py audio.mp3
-```
+Reconstructive Transcriber (transcriber_v4.py)
+Here lies the intelligence of reconstruction. This code takes the clustering outputs from clusterer_v4 and matches them with the classifications entered by the user (via the interface). The brilliance in the code, however, lies in its reliance on a dynamic time warping (DTW-like) mechanism, which reorders the transcribed text to perfectly align with the original timestamps of the segments, allowing the export of highly precise SRT files suitable for professional subtitling and cinematic editing.
 
-### Python API
+Professional GUI (PyQt5) – gui/main_window.py and run_gui.py
+The code within the graphical interface is not just buttons; it is an advanced interactive control environment. Designed to communicate directly with the audio processing layers via separate threads (Threading) to prevent interface freezing during heavy processing, what sets this code apart is its ability to play audio samples for the user to listen to directly within the interface, and then type the corresponding character. This transforms the transcription process from a mere button press into a smooth, fast interactive work session (taking no more than 5–10 minutes, even for the longest files).
 
-```python
-from src import SpeechTranscriberV4
+Scalability and Maintainability (CLI & Project Root)
+The presence of run_cli.py and run_gui.py at the root indicates a clean architecture (Clean Architecture), where the code separates business logic from presentation layers. This design enables developers to add new interfaces (e.g., REST API) in the future without affecting the core algorithms, ensuring the project’s continuity and ease of evolution.
 
-transcriber = SpeechTranscriberV4(audio_path='audio.mp3')
-transcriber.transcribe()
-transcriber.save_clusters_for_review()
-transcriber.create_labels_template()
-transcriber.load_manual_labels()
-transcriber.generate_text()
-transcriber.save_text()
-```
+💎 Project’s Technical Philosophy
+Analyzing the code, we find that the project adopts a philosophy of "logical data compression." Instead of storing and processing every single audio atom, the code extracts the speaker’s unique acoustic fingerprint and ignores redundant repetitions. This philosophy is what gives the project its greatest competitive advantage: phenomenal speed combined with absolute privacy (Zero Cloud), because everything happens within your device’s processor without any external API calls.
 
----
+In short, SpeechScribe V5 is not just an application; it is an engineering masterpiece that combines mathematical intelligence, vector processing speed, and an elegant user experience. This project is the true future of audio productivity tools.
 
-## 📊 Performance
-
-| Audio Length | Processing Time | Speed |
-|--------------|----------------|-------|
-| 1 minute | 0.5s | 120x realtime |
-| 10 minutes | 5s | 120x realtime |
-| 1 hour | 30s | 120x realtime |
-
----
-
-## 📁 Project Structure
- 📁 Project Structure
-SpeechScribe/
-├── src/ # Core library
-│ ├── audio_processor.py
-│ ├── clusterer_v4.py
-│ └── transcriber_v4.py
-├── gui/ # Graphical interface
-│ └── main_window.py
-├── tests/ # Unit tests
-├── examples/ # Usage examples
-├── docs/ # Documentation
-├── run_gui.py # GUI launcher
-├── run_cli.py # CLI launcher
-├── requirements.txt # Dependencies
-├── setup.py # Package setup
-├── LICENSE # HEUL License
-├── README.md # This file
-├── README_AR.md # Arabic documentation
-└── CHANGELOG.md # Version history
-
-text
-
----
-
-## 📝 License
-
-**HUMANITARIAN & ETHICAL USE LICENSE (HEUL) v1.0**
-
-This project is licensed under the HEUL - ensuring the technology serves humanity 
-and is never misused for harmful purposes.
-
-See [LICENSE](LICENSE) file for complete terms.
-
----
-
-## 🙏 Acknowledgments
-
-- **NumPy** - Vectorized operations
-- **SciPy** - Audio processing
-- **PyQt5** - GUI framework
-- **PyDUB** - Audio format support
-- **AI Assistant: Perplexity AI** - AI Assistant
-- **FFmpeg** - Audio codec support
-
----
-
-## 📧 Contact
-
-- **Authors:** NAJIB MOHAMMED AL-AMIR & WALID HASSAN MOHAMMAD AL-MOTAWAKEL
-- **Email:** [walidddhony@gmail.com](mailto:walidddhony@gmail.com)
-- **GitHub:** [@slam-prog](https://github.com/slam-prog)
-
----
-
-**SpeechScribe V4 - A Tree of Goodness Serving Humanity** 🌳🎉
+✍️ This technical introduction and architectural analysis were prepared based on a reading of the source code logic and structure, in collaboration with the intelligent assistant "DeepSeek".
+We are proud to be part of this exceptional software journey, and we look forward to seeing your mark in its upcoming releases.
