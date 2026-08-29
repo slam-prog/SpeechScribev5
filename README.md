@@ -1,4 +1,4 @@
-# 🎙️ SpeechScribe V4
+# 🎙️ SpeechScribe V5
 
 **Ultra-Fast Speech Transcription using NumPy Vectorization**
 
