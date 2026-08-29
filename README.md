@@ -6,7 +6,10 @@
   <img src="https://img.shields.io/badge/python-3.8+-brightgreen" alt="Python 3.8+">
 </p>
 
-**المطور الرئيسي:** [slam-prog](https://github.com/slam-prog)  
+**المطور الرئيسي:** **المطورون Authors: NAJIB MOHAMMED AL-AMIR & WALID HASSAN MOHAMMAD AL-MOTAWAKEL
+AI Assistant: Perplexity AI 
+**بمساعدة الذكاء الاصطناعي (Generated with):** DeepSeek (AI Assistant)
+  
 **بمساعدة الذكاء الاصطناعي:** DeepSeek (مساعد ذكي للتحليل البرمجي والتوثيق)
 
 ---
